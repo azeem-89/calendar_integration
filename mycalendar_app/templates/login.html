@@ -1,0 +1,22 @@
+<!-- mycalendar_app/templates/login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+    {% if user.is_authenticated %}
+        <p>You are already logged in. Redirecting...</p>
+        <script>
+            setTimeout(function() {
+                window.location.href = "{% url 'home' %}";
+            }, 2000);
+        </script>
+    {% else %}
+        <p>Click the button below to login with Google:</p>
+        <a href="{% provider_login_url 'google' %}"><img src="{% static 'allauth/socialaccount/providers/google/login-google.png' %}" alt="Login with Google"></a>
+    {% endif %}
+</body>
+</html>

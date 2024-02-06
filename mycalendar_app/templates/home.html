@@ -1,0 +1,30 @@
+<!-- myapp/templates/myapp/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Calendar Integration</title>
+</head>
+<body>
+    <h1>Welcome to Your Calendar</h1>
+    
+    {% if user.is_authenticated %}
+        <h2>Your Calendar Events:</h2>
+        {% if events %}
+            <ul>
+                {% for event in events %}
+                    <li>{{ event.summary }} - {{ event.start.dateTime|default:event.start.date }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No upcoming events found.</p>
+        {% endif %}
+    {% else %}
+        <p>Please log in with Google to see your calendar events.</p>
+        <a href="{% url 'social:begin' 'google' %}">Log in with Google</a>
+    {% endif %}
+</body>
+</html>

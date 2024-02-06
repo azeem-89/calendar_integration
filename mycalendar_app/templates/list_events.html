@@ -1,0 +1,19 @@
+<!-- templates/list_events.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event List</title>
+</head>
+<body>
+    <h2>Your Upcoming Events</h2>
+    {% if events %}
+        <ul>
+            {% for event in events %}
+                <li>{{ event.summary }} - {{ event.start.dateTime|default:"All day" }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No upcoming events found.</p>
+    {% endif %}
+</body>
+</html>
